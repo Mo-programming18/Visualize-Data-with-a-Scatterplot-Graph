@@ -1,0 +1,143 @@
+:root {
+  --bg-0: #0f1226;
+  --bg-1: #171a3a;
+  --ink: #e8ecff;
+  --ink-soft: #a6add6;
+  --bar-a: #22d3ee;
+  --bar-b: #6366f1;
+  --bar-hot: #f472b6;
+  --grid: rgba(166, 173, 214, 0.14);
+  --card-border: rgba(148, 163, 255, 0.18);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(1200px 600px at 15% -10%, #1e2350 0%, transparent 55%),
+    radial-gradient(1000px 500px at 110% 20%, #2a1a44 0%, transparent 50%),
+    var(--bg-0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+}
+
+.card {
+  width: min(960px, 100%);
+  background: linear-gradient(180deg, rgba(23, 26, 58, 0.9), rgba(15, 18, 38, 0.9));
+  border: 1px solid var(--card-border);
+  border-radius: 20px;
+  padding: 28px clamp(16px, 4vw, 40px) 22px;
+  box-shadow:
+    0 30px 80px -30px rgba(0, 0, 0, 0.7),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+#title {
+  text-align: center;
+  font-size: clamp(1.4rem, 3.4vw, 2.2rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0 0 2px;
+  background: linear-gradient(90deg, var(--bar-a), var(--bar-b) 55%, var(--bar-hot));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.subtitle {
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  margin: 0 0 10px;
+}
+
+/* Chart svg */
+svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.bar {
+  fill: url(#barGradient);
+  transition: fill 0.15s ease;
+}
+
+.bar:hover {
+  fill: var(--bar-hot);
+}
+
+/* Axes */
+#x-axis path,
+#y-axis path,
+.tick line {
+  stroke: var(--grid);
+}
+
+.tick text {
+  fill: var(--ink-soft);
+  font-size: 11px;
+}
+
+.axis-label {
+  fill: var(--ink-soft);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Tooltip */
+#tooltip {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.12s ease, transform 0.12s ease;
+  background: rgba(9, 11, 26, 0.96);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-size: 0.85rem;
+  line-height: 1.35;
+  color: var(--ink);
+  box-shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.8);
+  white-space: nowrap;
+  z-index: 10;
+}
+
+#tooltip.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#tooltip .tt-gdp {
+  font-weight: 700;
+  color: var(--bar-a);
+}
+
+.source {
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 0.78rem;
+  margin: 14px 0 0;
+}
+
+.source a {
+  color: var(--bar-a);
+  text-decoration: none;
+}
+
+.source a:hover {
+  text-decoration: underline;
+}
